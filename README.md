@@ -1,6 +1,10 @@
 # Tools
 
-Small utilities I build to support my workflow as a frontend platform / design system engineer.
+This folder contains small utilities I build to support my workflow as a frontend/platform engineer.
+
+- **index.html** – landing page listing tools
+- **styles.css** – shared styles for the landing page
+- **time-tracker/** – daily time-tracker utility
 
 ## Current tools
 
