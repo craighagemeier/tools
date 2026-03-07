@@ -1,12 +1,12 @@
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: #f5f5f5;
-  color: #333;
+  background: #e1e4e1; /* main Rams neutral */
+  color: #3b4b59;      /* dark neutral text */
   margin: 0;
   padding: 2rem;
 }
 
-h1 {
+.page-title {
   font-weight: normal;
   margin-bottom: 2rem;
   text-align: center;
@@ -20,44 +20,57 @@ h1 {
 }
 
 .timer {
-  background: #e0e0e0;
+  background: #ffffff; /* light neutral container */
   border-radius: 12px;
   padding: 1rem;
   width: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(59,75,89,0.1);
+  opacity: 0.7; /* dim inactive timers */
+  transition: opacity 0.2s ease, box-shadow 0.2s ease;
 }
 
-.timer-label {
+/* Active state halo + visual pop */
+.timer--active {
+  opacity: 1;
+  box-shadow:
+    0 0 0 2px rgba(34,139,34,0.2), /* green halo */
+    0 8px 16px rgba(59,75,89,0.2);
+}
+
+/* Timer elements */
+.timer__label {
   font-size: 0.85rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
   text-align: center;
+  color: #261201; /* dark neutral */
 }
 
-.shortcut {
+.timer__shortcut {
   font-weight: normal;
   font-size: 0.75rem;
-  color: #666;
+  color: #736356; /* subtle secondary */
 }
 
-.timer-screen {
+.timer__screen {
   width: 100%;
   text-align: center;
   font-size: 1.2rem;
   margin-bottom: 1rem;
+  color: #3b4b59;
 }
 
-.timer-button-wrapper {
+.timer__button-wrapper {
   position: relative;
   width: 120px;
   height: 120px;
   margin-bottom: 0.5rem;
 }
 
-.timer-button {
+.timer__button {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -71,40 +84,81 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: background 0.2s ease, color 0.2s ease;
-  background: #ccc;
-  color: #333;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
+  background: #aab7bf; /* neutral idle button */
+  color: #261201;
 }
 
-.timer.active .timer-button {
-  background: #228B22;
-  color: #fff;
+/* Press effect on active */
+.timer--active .timer__button {
+  background: #228B22; /* green pop */
+  color: #e1e4e1;      /* neutral text */
+  transform: translate(-50%, -50%) scale(0.95);
 }
 
-.progress-ring {
+.timer__progress-ring {
   transform: rotate(-90deg);
   position: absolute;
   top: 0;
   left: 0;
 }
 
-.progress-ring circle {
+.timer__progress-ring circle {
   fill: transparent;
   stroke-width: 12;
 }
 
-.progress-ring-bg { stroke: #999; }
-.progress-ring-short { stroke: #228B22; stroke-dasharray: 339.292; stroke-dashoffset: 339.292; transition: stroke-dashoffset 0.3s linear; }
-.progress-ring-long { stroke: rgba(34,139,34,0.3); stroke-dasharray: 339.292; stroke-dashoffset: 339.292; transition: stroke-dashoffset 0.3s linear; }
+/* BACKGROUND CIRCLE: subtle neutral */
+.timer__progress-ring--bg { 
+  stroke: #9c9c9c; 
+  stroke-dasharray: 339.292;
+  stroke-dashoffset: 0;
+}
 
-.targets {
+/* PROGRESS RING: gold showing time spent */
+.timer__progress-ring--short {
+  stroke: #ffcc33; /* warm yellow/gold */
+  stroke-dasharray: 339.292;
+  stroke-dashoffset: 339.292; /* full circle initially hidden */
+  transition: stroke-dashoffset 0.3s linear;
+}
+
+.timer__progress-ring--long {
+  display: none;
+}
+
+.timer__targets {
   display: flex;
   justify-content: space-between;
   width: 100%;
   font-size: 0.75rem;
-  color: #666;
+  color: #5f503e; /* muted neutral */
+  position: relative;
+  z-index: 1;
 }
 
+.timer__target {
+  position: relative;
+  cursor: help; 
+}
+
+.timer__target:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b4b59;
+  color: #e1e4e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Controls */
 .controls {
   margin-top: 2rem;
   display: flex;
@@ -112,19 +166,37 @@ h1 {
   justify-content: center;
 }
 
-button {
+.controls__button {
   font-family: inherit;
   font-size: 1rem;
   padding: 0.5rem 1rem;
   border-radius: 6px;
-  border: 1px solid #999;
-  background: #fff;
+  border: 1px solid #9c9c9c;
+  background: #e1e4e1;
+  color: #261201;
   cursor: pointer;
   transition: background 0.2s ease, border 0.2s ease;
 }
 
-button:hover { background: #e0e0e0; }
+.controls__button:hover { 
+  background: #bf7c2a; /* gold hover */
+  color: #261201;
+}
 
-#weekly-summary { margin-top: 2rem; }
-#weekly-summary table { width: 100%; border-collapse: collapse; }
-#weekly-summary th, #weekly-summary td { border: 1px solid #999; padding: 4px; text-align: center; font-size: 0.75rem; }
+/* Weekly summary */
+.weekly-summary {
+  margin-top: 2rem;
+}
+
+.weekly-summary__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.weekly-summary__cell {
+  border: 1px solid #9c9c9c;
+  padding: 4px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #261201;
+}
