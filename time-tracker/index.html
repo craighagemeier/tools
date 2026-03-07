@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Time Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>Tools - Time Tracker</h1>
+
+  <div class="timers">
+    <div class="timer" data-key="1" id="development">
+      <div class="timer-label">Development <span class="shortcut">[1]</span></div>
+      <div class="timer-screen"><span class="time-display">00:00:00</span></div>
+      <div class="timer-button-wrapper">
+        <svg class="progress-ring" width="120" height="120">
+          <circle class="progress-ring-bg" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-long" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-short" r="54" cx="60" cy="60"/>
+        </svg>
+        <button class="timer-button">1</button>
+      </div>
+      <div class="targets">
+        <span class="short">2:24</span>
+        <span class="long">1:36</span>
+      </div>
+    </div>
+
+    <div class="timer" data-key="2" id="support">
+      <div class="timer-label">Support <span class="shortcut">[2]</span></div>
+      <div class="timer-screen"><span class="time-display">00:00:00</span></div>
+      <div class="timer-button-wrapper">
+        <svg class="progress-ring" width="120" height="120">
+          <circle class="progress-ring-bg" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-long" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-short" r="54" cx="60" cy="60"/>
+        </svg>
+        <button class="timer-button">2</button>
+      </div>
+      <div class="targets">
+        <span class="short">3:12</span>
+        <span class="long">4:00</span>
+      </div>
+    </div>
+
+    <div class="timer" data-key="3" id="general">
+      <div class="timer-label">General <span class="shortcut">[3]</span></div>
+      <div class="timer-screen"><span class="time-display">00:00:00</span></div>
+      <div class="timer-button-wrapper">
+        <svg class="progress-ring" width="120" height="120">
+          <circle class="progress-ring-bg" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-long" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-short" r="54" cx="60" cy="60"/>
+        </svg>
+        <button class="timer-button">3</button>
+      </div>
+      <div class="targets">
+        <span class="short">1:36</span>
+        <span class="long">1:36</span>
+      </div>
+    </div>
+
+    <div class="timer" data-key="4" id="management">
+      <div class="timer-label">Management <span class="shortcut">[4]</span></div>
+      <div class="timer-screen"><span class="time-display">00:00:00</span></div>
+      <div class="timer-button-wrapper">
+        <svg class="progress-ring" width="120" height="120">
+          <circle class="progress-ring-bg" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-long" r="54" cx="60" cy="60"/>
+          <circle class="progress-ring-short" r="54" cx="60" cy="60"/>
+        </svg>
+        <button class="timer-button">4</button>
+      </div>
+      <div class="targets">
+        <span class="short">0:48</span>
+        <span class="long">1:36</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="newDay">Start New Day</button>
+    <button id="pauseAll">Pause All</button>
+  </div>
+
+  <div id="weekly-summary">
+    <h2>Weekly Summary</h2>
+    <table>
+      <thead>
+        <tr><th>Date</th><th>Development</th><th>Support</th><th>General</th><th>Management</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
