@@ -1,0 +1,67 @@
+/* Base layout */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, sans-serif;
+  color: #333;
+  background: #fff;
+  margin: 40px;
+  max-width: 640px;
+  line-height: 1.5;
+}
+
+/* Typography */
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+
+/* Divider */
+hr {
+  border: none;
+  border-top: 1px solid #999;
+  width: min(320px, 80%);
+  margin: 0 0 32px 0;
+}
+
+/* Tool list */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 12px;
+}
+
+li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+li a:hover {
+  text-decoration: underline;
+  color: #228B22;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #121212;
+    color: #eee;
+  }
+
+  li a {
+    color: #eee;
+  }
+
+  li a:hover {
+    color: #556B2F;  /* slightly softer green for dark bg */
+  }
+
+  hr {
+    border-top-color: #666;
+  }
+}

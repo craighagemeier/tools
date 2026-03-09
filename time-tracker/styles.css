@@ -1,0 +1,437 @@
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #e1e4e1;
+  color: #3b4b59;
+  margin: 0;
+  padding: 1.5rem;
+}
+
+.page-title {
+  font-weight: normal;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.timers {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timer-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.timer-row .timer {
+  flex: 0 0 auto; 
+}
+
+.timer {
+  border-radius: 16px;
+  padding: 1rem;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.35),
+    rgba(255,255,255,0) 40%
+  ), #e1e4e1;
+  box-shadow:
+    inset 3px 3px 6px rgba(255,255,255,0.85),   /* inner highlight */
+    inset -1px -1px 2px rgba(0,0,0,0.05),       /* faint inner edge */
+   -8px -8px 16px rgba(255,255,255,0.7),        /* outer highlight */
+    10px 10px 20px rgba(0,0,0,0.18);            /* grounding shadow */
+
+  border: 1px solid rgba(0,0,0,0.03);           /* subtle edge definition */
+  filter: brightness(1.05) contrast(0.95);
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.timer--active {
+  filter: brightness(1) contrast(1);
+}
+
+/* Timer elements */
+.timer__label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  color: #261201;
+}
+
+.timer__shortcut {
+  font-weight: normal;
+  font-size: 0.75rem;
+  color: #736356;
+}
+
+.timer__screen {
+  width: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  color: #3b4b59;
+}
+
+.timer__button-wrapper {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 0.5rem;
+  border-radius: 50%;
+
+  /* slightly darker than surface */
+  background: #d6d9d6;
+
+  /* recessed instrument panel */
+  box-shadow:
+    inset 6px 6px 10px rgba(0,0,0,0.18),
+    inset -4px -4px 8px rgba(255,255,255,0.8),
+    1px 1px 1px rgba(0,0,0,0.05);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer__button-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  box-shadow:
+    0 1px 1px rgba(255,255,255,0.6),
+    0 -1px 1px rgba(0,0,0,0.1);
+  pointer-events: none;
+}
+
+.timer__button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #261201;
+  background: #aab7bf;
+
+  /* plastic lighting */
+  box-shadow:
+    -4px -4px 8px rgba(255,255,255,0.8),
+     4px  4px 8px rgba(0,0,0,0.25),
+     inset 2px 2px 3px rgba(255,255,255,0.6),
+     inset -2px -2px 4px rgba(0,0,0,0.2);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.08s ease,
+    box-shadow 0.08s ease;
+}
+
+.timer__button:focus {
+  outline: none;
+}
+
+.timer__button:focus-visible {
+  box-shadow:
+    -4px -4px 8px rgba(255,255,255,0.8),
+     4px  4px 8px rgba(0,0,0,0.25),
+     inset 2px 2px 3px rgba(255,255,255,0.6),
+     inset -2px -2px 4px rgba(0,0,0,0.2),
+     0 0 0 2px #e1e4e1,
+     0 0 0 5px rgba(34,139,34,0.85)
+}
+
+/* Timer running (still raised) */
+.timer--active .timer__button {
+  background: #228B22;
+  color: #e1e4e1;
+}
+
+/* Physical press feedback */
+.timer__button:active {
+  transform: translate(-50%, -50%) scale(0.94);
+
+  box-shadow:
+    inset 3px 3px 6px rgba(0,0,0,0.4),
+    inset -2px -2px 4px rgba(255,255,255,0.3);
+}
+
+.timer__progress-ring {
+  transform: rotate(-90deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.timer__progress-ring circle {
+  fill: transparent;
+  stroke-width: 10;
+}
+
+.timer__progress-ring--bg { 
+  stroke: #8f8f8f;
+  opacity: 0.4;
+}
+
+.timer__progress-ring--short {
+  stroke: #e0b429;
+  stroke-linecap: round;
+  stroke-width: 10;
+
+  stroke-dasharray: 339.292;
+  stroke-dashoffset: 339.292;
+
+  transition: stroke-dashoffset 0.3s linear;
+
+  filter: drop-shadow(0 1px 0 rgba(255,255,255,0.6))
+          drop-shadow(0 -1px 1px rgba(0,0,0,0.15));
+}
+
+.timer__progress-ring--long {
+  display: none;
+}
+
+.timer__targets {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.75rem;
+  color: #5f503e;
+  position: relative;
+  z-index: 1;
+}
+
+.timer__target {
+  position: relative;
+  cursor: help; 
+}
+
+.timer__target:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b4b59;
+  color: #e1e4e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.6rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+/* Controls container */
+.controls {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Square buttons with circular indentation + subtle bevel */
+.controls__button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 60px;
+  height: 60px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+
+  background-color: #b0b0b0;
+  color: #1a1a1a;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  /* Improved circular indentation with highlights and shadows */
+  background-image:
+    radial-gradient(circle at 50% 25%, rgba(255,255,255,0.6), rgba(255,255,255,0.2) 40%, transparent 55%),
+    radial-gradient(circle at 50% 25%, rgba(0,0,0,0.15), transparent 70%);
+
+  /* inset shadows for tactile feel + bevel edges */
+  box-shadow:
+    inset -3px -3px 6px rgba(255,255,255,0.6),
+    inset 3px 3px 6px rgba(0,0,0,0.35),
+    1px 1px 0 rgba(255,255,255,0.2),
+   -1px -1px 0 rgba(0,0,0,0.1);
+
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease,
+    background 0.2s ease;
+}
+
+/* Primary button (Play / New Day) with subtle bevel */
+.controls__button--primary {
+  background-color: #c0c0c0;
+  background-image:
+    /* circular top highlight */
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.65), rgba(255,255,255,0.25) 35%, transparent 55%),
+    /* subtle inner shadow for indentation */
+    radial-gradient(circle at 50% 25%, rgba(0,0,0,0.15), transparent 70%),
+    /* top-left bevel highlight */
+    linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 40%),
+    /* bottom-right bevel shadow */
+    linear-gradient(315deg, rgba(0,0,0,0.1) 0%, transparent 40%);
+}
+
+/* Secondary button (Pause All) with subtle bevel */
+.controls__button--secondary {
+  background-color: #909090;
+  background-image:
+    /* circular top highlight */
+    radial-gradient(circle at 50% 30%, rgba(255,255,255,0.55), rgba(255,255,255,0.2) 40%, transparent 60%),
+    /* subtle inner shadow for indentation */
+    radial-gradient(circle at 50% 25%, rgba(0,0,0,0.15), transparent 70%),
+    /* top-left bevel highlight */
+    linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 35%),
+    /* bottom-right bevel shadow */
+    linear-gradient(315deg, rgba(0,0,0,0.08) 0%, transparent 35%);
+}
+
+/* Pressed / active state (keeps indentation consistent) */
+.controls__button:active {
+  transform: scale(0.93);
+  box-shadow:
+    inset 4px 4px 8px rgba(0,0,0,0.45),
+    inset -4px -4px 8px rgba(255,255,255,0.5),
+    1px 1px 0 rgba(255,255,255,0.15),
+   -1px -1px 0 rgba(0,0,0,0.05);
+
+  /* Preserve top circular highlight and bevels */
+  /* Primary */
+  background-image:
+    radial-gradient(circle at 50% 20%, rgba(255,255,255,0.65), rgba(255,255,255,0.25) 35%, transparent 55%),
+    radial-gradient(circle at 50% 25%, rgba(0,0,0,0.15), transparent 70%),
+    linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 40%),
+    linear-gradient(315deg, rgba(0,0,0,0.1) 0%, transparent 40%);
+}
+
+/* Secondary pressed */
+.controls__button--secondary:active {
+  background-image:
+    radial-gradient(circle at 50% 30%, rgba(255,255,255,0.55), rgba(255,255,255,0.2) 40%, transparent 60%),
+    radial-gradient(circle at 50% 25%, rgba(0,0,0,0.15), transparent 70%),
+    linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 35%),
+    linear-gradient(315deg, rgba(0,0,0,0.08) 0%, transparent 35%);
+}
+
+/* Focus ring - subtle and neutral */
+.controls__button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #b0b0b0,
+    0 0 0 4px rgba(50,50,50,0.25),
+    inset -3px -3px 6px rgba(255,255,255,0.6),
+    inset 3px 3px 6px rgba(0,0,0,0.35);
+}
+
+/* Play / Pause icons using pseudo-elements */
+.controls__button::before {
+  content: "▶";
+  font-size: 1.2rem;
+}
+
+.controls__button--secondary::before {
+  content: "⏸";
+}
+
+/* Tooltips for buttons */
+.controls__button[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #3b4b59;
+  color: #e1e4e1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.65rem;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+.weekly-summary {
+  margin-top: 2rem;
+  font-size: 0.75rem;
+  color: #3b4b59;
+}
+
+.weekly-summary__table-wrapper {
+  border-radius: 8px;
+  overflow: hidden; 
+  border: 1px solid #c0c0c0;
+  background: #f0f2f0;
+}
+
+.weekly-summary__table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0;
+  background: transparent;
+}
+
+.weekly-summary__head th {
+  font-weight: 600;
+  background: #e6e8e6;
+  color: #3b4b59;
+}
+
+.weekly-summary__cell {
+  border: 1px solid #c0c0c0;
+  padding: 4px 6px;
+  text-align: center;
+  background: #f0f2f0;
+}
+
+.footer-note {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: #5f503e; 
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.footer-note a {
+  color: #228B22;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.footer-note a:hover,
+.footer-note a:focus-visible {
+  color: #1a5a1a;
+  outline: none;
+  text-decoration: underline;
+}
