@@ -358,6 +358,7 @@ body {
 .controls__button::before {
   content: "▶";
   font-size: 1.2rem;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .controls__button--secondary::before {
@@ -434,4 +435,16 @@ body {
   color: #1a5a1a;
   outline: none;
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  body {
+    padding: 1rem;
+  }
+
+  .timers,
+  .timer-row {
+    flex-direction: column;
+    align-items: center;
+  }
 }
