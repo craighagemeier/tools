@@ -354,15 +354,15 @@ body {
     inset 3px 3px 6px rgba(0,0,0,0.35);
 }
 
-/* Play / Pause icons using pseudo-elements */
-.controls__button::before {
-  content: "▶";
-  font-size: 1.2rem;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+.controls__button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  pointer-events: none;
 }
 
-.controls__button--secondary::before {
-  content: "⏸";
+button svg {
+  display: block;
 }
 
 /* Tooltips for buttons */
@@ -437,7 +437,7 @@ body {
   text-decoration: underline;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
   body {
     padding: 1rem;
   }
