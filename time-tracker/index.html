@@ -9,94 +9,117 @@
   <h1 class="page-title">Tools - Time Tracker</h1>
 
   <div class="timers">
-    <div class="timer timer--development" data-key="1" id="development">
-      <div class="timer__label">Development <span class="timer__shortcut">[1]</span></div>
-      <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
-      <div class="timer__button-wrapper">
-        <svg class="timer__progress-ring" width="120" height="120">
-          <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
-        </svg>
-        <button class="timer__button">1</button>
+    <div class="timer-row">
+      <div class="timer timer--development" data-key="1" id="development">
+        <div class="timer__label">Development <span class="timer__shortcut">[1]</span></div>
+        <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
+        <div class="timer__button-wrapper">
+          <svg class="timer__progress-ring" width="120" height="120">
+            <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
+          </svg>
+          <button class="timer__button" aria-label="Start/stop Development timer">1</button>
+        </div>
+        <div class="timer__targets">
+          <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
+          <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
+        </div>
       </div>
-      <div class="timer__targets">
-        <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
-        <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
+
+      <div class="timer timer--support" data-key="2" id="support">
+        <div class="timer__label">Support <span class="timer__shortcut">[2]</span></div>
+        <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
+        <div class="timer__button-wrapper">
+          <svg class="timer__progress-ring" width="120" height="120">
+            <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
+          </svg>
+          <button class="timer__button" aria-label="Start/stop Support timer">2</button>
+        </div>
+        <div class="timer__targets">
+          <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
+          <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
+        </div>
       </div>
     </div>
 
-    <div class="timer timer--support" data-key="2" id="support">
-      <div class="timer__label">Support <span class="timer__shortcut">[2]</span></div>
-      <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
-      <div class="timer__button-wrapper">
-        <svg class="timer__progress-ring" width="120" height="120">
-          <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
-        </svg>
-        <button class="timer__button">2</button>
+    <div class="timer-row">
+      <div class="timer timer--general" data-key="3" id="general">
+        <div class="timer__label">General <span class="timer__shortcut">[3]</span></div>
+        <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
+        <div class="timer__button-wrapper">
+          <svg class="timer__progress-ring" width="120" height="120">
+            <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
+          </svg>
+          <button class="timer__button" aria-label="Start/stop General timer">3</button>
+        </div>
+        <div class="timer__targets">
+          <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
+          <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
+        </div>
       </div>
-      <div class="timer__targets">
-        <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
-        <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
-      </div>
-    </div>
 
-    <div class="timer timer--general" data-key="3" id="general">
-      <div class="timer__label">General <span class="timer__shortcut">[3]</span></div>
-      <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
-      <div class="timer__button-wrapper">
-        <svg class="timer__progress-ring" width="120" height="120">
-          <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
-        </svg>
-        <button class="timer__button">3</button>
-      </div>
-      <div class="timer__targets">
-        <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
-        <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
-      </div>
-    </div>
-
-    <div class="timer timer--management" data-key="4" id="management">
-      <div class="timer__label">Management <span class="timer__shortcut">[4]</span></div>
-      <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
-      <div class="timer__button-wrapper">
-        <svg class="timer__progress-ring" width="120" height="120">
-          <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
-          <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
-        </svg>
-        <button class="timer__button">4</button>
-      </div>
-      <div class="timer__targets">
-        <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
-        <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
+      <div class="timer timer--management" data-key="4" id="management">
+        <div class="timer__label">Management <span class="timer__shortcut">[4]</span></div>
+        <div class="timer__screen"><span class="timer__time-display">00:00:00</span></div>
+        <div class="timer__button-wrapper">
+          <svg class="timer__progress-ring" width="120" height="120">
+            <circle class="timer__progress-ring--bg" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--long" r="54" cx="60" cy="60"/>
+            <circle class="timer__progress-ring--short" r="54" cx="60" cy="60"/>
+          </svg>
+          <button class="timer__button" aria-label="Start/stop Management timer">4</button>
+        </div>
+        <div class="timer__targets">
+          <span class="timer__target timer__target--short" data-tooltip="Short term time goal"></span>
+          <span class="timer__target timer__target--long" data-tooltip="Long term time goal"></span>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="controls controls--main">
-    <button class="controls__button" id="newDay">Start New Day</button>
-    <button class="controls__button" id="pauseAll">Pause All</button>
+    <!-- Pause All button -->
+    <button 
+      class="controls__button controls__button--secondary" 
+      id="pauseAll" 
+      data-tooltip="Pause All"
+      aria-label="Pause All">
+    </button>
+
+    <!-- Start New Day button -->
+    <button 
+      class="controls__button controls__button--primary" 
+      id="newDay" 
+      data-tooltip="Start New Day"
+      aria-label="Start New Day">
+    </button>
   </div>
 
   <div class="weekly-summary">
     <h2 class="weekly-summary__title">Weekly Summary</h2>
-    <table class="weekly-summary__table">
-      <thead class="weekly-summary__head">
-        <tr class="weekly-summary__row">
-          <th class="weekly-summary__cell">Date</th>
-          <th class="weekly-summary__cell">Development</th>
-          <th class="weekly-summary__cell">Support</th>
-          <th class="weekly-summary__cell">General</th>
-          <th class="weekly-summary__cell">Management</th>
-        </tr>
-      </thead>
-      <tbody class="weekly-summary__body"></tbody>
-    </table>
+    <div class="weekly-summary__table-wrapper">
+      <table class="weekly-summary__table">
+        <thead class="weekly-summary__head">
+          <tr class="weekly-summary__row">
+            <th class="weekly-summary__cell">Date</th>
+            <th class="weekly-summary__cell">Development</th>
+            <th class="weekly-summary__cell">Support</th>
+            <th class="weekly-summary__cell">General</th>
+            <th class="weekly-summary__cell">Management</th>
+          </tr>
+        </thead>
+        <tbody class="weekly-summary__body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    <a href="https://craighagemeier.com/inspiration" target="_blank" rel="noopener noreferrer">Inspiration</a>
   </div>
 
   <script src="script.js"></script>

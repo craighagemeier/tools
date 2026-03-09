@@ -1,5 +1,5 @@
 // CONFIG
-const TIME_MULTIPLIER = 60; // 1 = normal, 60 = 1 second = 1 minute
+const TIME_MULTIPLIER = 1; // 1 = normal, 60 = 1 second = 1 minute
 const WEEK_STORAGE_KEY = 'timeTrackerWeek';
 
 // GOALS
@@ -127,12 +127,31 @@ document.querySelectorAll('.timer__button').forEach(btn => {
   });
 });
 
-// KEYBOARD SHORTCUTS 1–4
+// GLOBAL KEYBOARD SHORTCUTS
 document.addEventListener('keydown', e => {
-  const keyMap = { '1':'development', '2':'support', '3':'general', '4':'management' };
-  if(keyMap[e.key]) {
+  const keyMap = { 
+    '1':'development', 
+    '2':'support', 
+    '3':'general', 
+    '4':'management' 
+  };
+
+  if (keyMap[e.key]) {
     e.preventDefault();
-    startTimer(keyMap[e.key]);
+    const key = keyMap[e.key];
+    startTimer(key);
+
+    // move focus to the button so it's clear visually
+    const btn = document.getElementById(key)?.querySelector('.timer__button');
+    btn?.focus();
+  }
+
+  // Pause all timers (P)
+  if(e.key.toLowerCase() === 'p') {
+    e.preventDefault();
+    const pauseBtn = document.getElementById('pauseAll');
+    pauseBtn.click();
+    pauseBtn.focus();  // move focus to Pause button
   }
 });
 
